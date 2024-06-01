@@ -20,8 +20,10 @@ let secretWord = '-'.repeat(word.length);
 
 function gameOver() {
     if(score === 7){
-        alert(`Game is over😓 Word was: ${word}`)
-        location.reload()
+        setTimeout(() => {
+            alert(`Game is over😓 Word was: ${word}`)
+            location.reload()
+        }, 100)
     }
 }
 
@@ -34,30 +36,29 @@ document.addEventListener("keydown", (event) => {
         usedLettersArray.push(key)
         const usedLettersStr = usedLettersArray.join(', ')
         usedLetters.innerHTML = usedLettersStr
-    }
-    if (guessWordArray.indexOf(key) === -1) {
-        score++
-        hangmanImg.setAttribute("src", `./images/hangMan-images/hang-${score}.png`)
-        gameOver()
-    }
-    else {
-        let letterIndexes = []
-        for (let i = 0; i < guessWordArray.length; i++) {
-            if (guessWordArray[i] === key)
-                letterIndexes.push(i)
+
+        if (guessWordArray.indexOf(key) === -1) {
+            score++
+            hangmanImg.setAttribute("src", `./images/hangMan-images/hang-${score}.png`)
+            gameOver()
         }
-        for (const num of letterIndexes) {
-            const newSecretWord = secretWord.slice(0, num) + guessWordArray[num] + secretWord.slice(num + 1, secretWord.length)
-            secretWord = newSecretWord
-            guessWordDisplay.innerHTML = secretWord
+        else {
+            let letterIndexes = []
+            for (let i = 0; i < guessWordArray.length; i++) {
+                if (guessWordArray[i] === key)
+                    letterIndexes.push(i)
+            }
+            for (const num of letterIndexes) {
+                const newSecretWord = secretWord.slice(0, num) + guessWordArray[num] + secretWord.slice(num + 1, secretWord.length)
+                secretWord = newSecretWord
+                guessWordDisplay.innerHTML = secretWord
+            }
         }
     }
+    
     setTimeout(() => {
         if (secretWord === word){
             alert(`Congratulations! You've guessed the word '${word}'`)
         }
     }, 100)
-    
-    
-
 })
