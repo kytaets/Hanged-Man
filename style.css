@@ -1,3 +1,36 @@
 body {
     background-image: url("/images/paper-background.jpg");
+    height: 100vh;
 }
+
+body {
+    display: grid;
+    place-items: center !important;
+}
+
+.container {
+    height: 100%;
+}
+
+.container-letters {
+    margin-top: 70px;
+}
+
+#hangman-img {
+    height: 500px;
+    width: auto;
+}
+
+#guess-word {
+    font-size: 2rem;
+}
+
+.letters-row {
+    margin-bottom: 15px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+}
+ 
