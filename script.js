@@ -30,7 +30,8 @@ function victory() {
     if (secretWord === word){
         setTimeout(() => {
                 alert(`Congratulations!🎉🎉🎉 You've guessed the word '${word}'!!!`)
-            }, 100)
+                location.reload()
+        }, 100)
     }
 }
 
