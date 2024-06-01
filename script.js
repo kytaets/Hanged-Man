@@ -17,6 +17,12 @@ let usedLettersArray = []
 
 guessWord.innerHTML = word
 
+function gameOver() {
+    if(score === 7){
+        alert(`Game is over😓 Word was: ${word}`)
+        location.reload()
+    }
+}
 
 document.addEventListener("keydown", (event) => {
     const key = event.code.slice(3,4).toLowerCase()
@@ -28,6 +34,7 @@ document.addEventListener("keydown", (event) => {
     if (guessWordArray.indexOf(key) === -1) {
         score++
         hangmanImg.setAttribute("src", `./images/hangMan-images/hang-${score}.png`)
+        gameOver()
     }
     
 
