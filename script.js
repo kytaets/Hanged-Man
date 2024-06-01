@@ -3,15 +3,13 @@ import {words} from './words.js'
 // choosing a random word
 const wordsList = words.split('\n').map(word => word.trim()).filter(word => word.length > 0);
 const word = wordsList[Math.floor(Math.random() * wordsList.length)]
-const guessWord = document.getElementById('guess-word')
-const guessWordDisplay = document.getElementById('guess-word-display')
-
-// getting html elements
-const hangmanImg = document.getElementById('hangman-img')
-const usedLetters = document.getElementById('used-letters')
-
 const guessWordArray = word.split('')
 
+// choosing html elements
+const guessWord = document.getElementById('guess-word')
+const guessWordDisplay = document.getElementById('guess-word-display')
+const hangmanImg = document.getElementById('hangman-img')
+const usedLetters = document.getElementById('used-letters')
 
 let score = 0
 let usedLettersArray = []
@@ -27,11 +25,22 @@ function gameOver() {
     }
 }
 
+
+function victory() {
+    if (secretWord === word){
+        setTimeout(() => {
+                alert(`Congratulations!🎉🎉🎉 You've guessed the word '${word}'!!!`)
+            }, 100)
+    }
+}
+
+
 guessWord.innerHTML = word
 guessWordDisplay.innerHTML = secretWord
 
 document.addEventListener("keydown", (event) => {
     const key = event.code.slice(3,4).toLowerCase()
+
     if (usedLettersArray.indexOf(key) === -1) {
         usedLettersArray.push(key)
         const usedLettersStr = usedLettersArray.join(', ')
@@ -55,10 +64,6 @@ document.addEventListener("keydown", (event) => {
             }
         }
     }
-    
-    setTimeout(() => {
-        if (secretWord === word){
-            alert(`Congratulations! You've guessed the word '${word}'`)
-        }
-    }, 100)
+
+    victory()
 })
