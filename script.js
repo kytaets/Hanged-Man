@@ -50,9 +50,14 @@ document.addEventListener("keydown", (event) => {
             const newSecretWord = secretWord.slice(0, num) + guessWordArray[num] + secretWord.slice(num + 1, secretWord.length)
             secretWord = newSecretWord
             guessWordDisplay.innerHTML = secretWord
-
         }
     }
+    setTimeout(() => {
+        if (secretWord === word){
+            alert(`Congratulations! You've guessed the word '${word}'`)
+        }
+    }, 100)
+    
     
 
 })
