@@ -6,16 +6,11 @@ const word = wordsList[Math.floor(Math.random() * wordsList.length)];
 const guessWordArray = word.split('');
 
 // choosing html elements
-const guessWord = document.getElementById('guess-word');
+// const guessWord = document.getElementById('guess-word');
 const guessWordDisplay = document.getElementById('guess-word-display');
 const hangmanImg = document.getElementById('hangman-img');
 const usedLetters = document.getElementById('used-letters');
 const buttons = document.querySelectorAll("button");
-
-
-let score = 0;
-let usedLettersArray = [];
-let secretWord = '-'.repeat(word.length);
 
 
 function letterCheck(key) {
@@ -63,8 +58,11 @@ function victory() {
     }
 }
 
+let score = 0;
+let usedLettersArray = [];
+let secretWord = '-'.repeat(word.length);
 
-guessWord.innerHTML = word
+// guessWord.innerHTML = word
 guessWordDisplay.innerHTML = secretWord
 
 buttons.forEach(button => {
